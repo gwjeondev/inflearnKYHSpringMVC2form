@@ -26,22 +26,22 @@
             id와 name은 지정한 변수이름과 같으며, value는 변수의 값을 사용한다.
             *{}의 의미는 현재 th:object ${item}의 소속이므로 item.itemName에서 item을 생략할 수 있다. 즉 ${item.itemName}와 같은 의미이다.
             -->
-            <input type="text" th:field="*{id}" class="form-control" value="1" readonly>
+            <input type="text" th:field="*{id}" class="form-control" readonly>
             <!--<input type="text" id="id" name="id" class="form-control" value="1" th:value="${item.id}" readonly>-->
         </div>
         <div>
             <label for="itemName">상품명</label>
-            <input type="text" th:field="*{itemName}" class="form-control" value="상품A">
+            <input type="text" th:field="*{itemName}" class="form-control">
             <!--<input type="text" id="itemName" name="itemName" class="form-control" value="상품A" th:value="${item.itemName}">-->
         </div>
         <div>
             <label for="price">가격</label>
-            <input type="text" th:field="*{price}" class="form-control" value="10000">
+            <input type="text" th:field="*{price}" class="form-control">
             <!--<input type="text" id="price" name="price" class="form-control" value="10000" th:value="${item.price}">-->
         </div>
         <div>
             <label for="quantity">수량</label>
-            <input type="text" th:field="*{quantity}" class="form-control" value="10">
+            <input type="text" th:field="*{quantity}" class="form-control">
             <!--<input type="text" id="quantity" name="quantity" class="form-control" value="10" th:value="${item.quantity}">-->
         </div>
 
