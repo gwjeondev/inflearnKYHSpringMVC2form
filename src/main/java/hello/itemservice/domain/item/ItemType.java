@@ -9,4 +9,8 @@ public enum ItemType {
     ItemType(String description) {
         this.description = description;
     }
+
+    public void book() {
+        System.out.println("BOOK = " + description);
+    }
 }
