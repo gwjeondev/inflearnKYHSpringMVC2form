@@ -7,10 +7,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ItemTypeTest {
 
-    @Test
-    public void itemType() {
-        ItemType.BOOK.book();
 
-
-    }
 }
