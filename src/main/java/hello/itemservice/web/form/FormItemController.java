@@ -9,7 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
+
 
 @Slf4j
 @Controller
@@ -18,6 +22,25 @@ import java.util.List;
 public class FormItemController {
 
     private final ItemRepository itemRepository;
+
+    /* spring에서 제공하는 특별한 기능으로
+    FormItemController 컨트롤러를 호출할때에 소속된 모든 Method는 반환하는 regions을 model에 담는다. 모든 Method에
+    Map<String, String> regions = new LinkedHashMap<>();
+    regions.put("SEOUL", "서울");
+    regions.put("BUSAN", "부산");
+    regions.put("JEJU", "제주");
+    model.addAttribute("regions", regions);
+    와 같은 일을 자동으로 해준다. */
+    @ModelAttribute("regions")
+    public Map<String, String> regions() {
+        //일반적인 HashMap은 순서가 보장되지 않으나 LinkedHashMap은 순서를 보장한다.
+        Map<String, String> regions = new LinkedHashMap<>();
+        regions.put("SEOUL", "서울");
+        regions.put("BUSAN", "부산");
+        regions.put("JEJU", "제주");
+
+        return regions;
+    }
 
     @GetMapping
     public String items(Model model) {
@@ -42,6 +65,7 @@ public class FormItemController {
 
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+
         /*
         checked 상태일 경우 on이라는 값으로 전달되는데 스프링 타입 컨버터가 boolean 타입이면 true으로 변환한다.
         item.open=true
@@ -55,6 +79,7 @@ public class FormItemController {
         item.open=false
          */
         log.info("item.open={}", item.getOpen());
+        log.info("item.regions={}", item.getRegions());
 
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
