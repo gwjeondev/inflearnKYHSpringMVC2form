@@ -59,11 +59,9 @@
             <div th:each="region : ${regions}" class="form-check form-check-inline">
                 <!-- item.regions에는 check된 상태의 값들이 list에 저장되어있고 region.key에는 서울,부산,제주가 저장되어 있으며
                 타임리프에서는 이 item.regions와 region.key를 비교하여 값이 서로 있으면 checked 상태를 만들어주고 아니라면 checked 상태를 해제한다. -->
-                <input type="checkbox" th:field="*{regions}" th:value="${region.key}"
-                       class="form-check-input">
+                <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input">
                 <!-- 타임리프에서는 다음과 같이 each문에서 동적으로 id가 생성될 때 해당 id값을 사용하기 위하여 ids라는것을 지원한다. -->
-                <label th:for="${#ids.prev('regions')}"
-                       th:text="${region.value}" class="form-check-label">서울</label>
+                <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label">서울</label>
             </div>
         </div>
 
@@ -77,6 +75,18 @@
                     BOOK
                 </label>
             </div>
+        </div>
+        
+        <!-- select Box -->
+        <div>
+            <div>배송 방식</div>
+            <!-- th:field의 deliveryCode값과 option의 th:value와 일치하면 selected 상태로 처리한다. -->
+            <select th:field="*{deliveryCode}" class="form-select">
+                <option value="">==배송 방식 선택==</option>
+                <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}" th:text="${deliveryCode.displayName}">
+                    FAST
+                </option>
+            </select>
         </div>
 
         <div class="row">
